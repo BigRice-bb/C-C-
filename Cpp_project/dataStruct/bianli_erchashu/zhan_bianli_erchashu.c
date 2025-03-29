@@ -28,7 +28,7 @@ void nonRecursion( struct BinaryNode*nodeA)
             printf("%c ", node->data);
             continue;
         }
-        //如果为假
+        //如果为假,修改为真  将右孩子  左孩子  根入栈
         node->flag = 1;
         //如果右孩子不为空，入栈
         if (node->right != NULL)

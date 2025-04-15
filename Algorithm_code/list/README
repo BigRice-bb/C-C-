@@ -1,0 +1,27 @@
+链表--增删操作时间复杂度O(1)--查询操作O(n)--适用于数据量不固定,需要频繁增删数据的场景
+数组--增删操作时间复杂度O(n)--查询操作O(1)--适用于数据量固定,需要频繁查询数据的场景
+
+链表的构造
+1.单链表
+typedef struct ListNode{
+    int val;
+    struct ListNode *next;//指向下一节点
+}
+2.双向链表
+typedef struct ListNode{
+    int val;
+    struct ListNode *next;//指向下一节点
+    struct ListNode *prev;//指向上一个节点
+}
+
+题一:删除链表元素--还可以用递归做--退出条件为传入的头结点为NULL
+
+Leecode206:翻转链表,法一-双指针(再加一个临时缓冲指针,三指针),边界条件,cur==NULL 
+                    法二-递归法 退出条件 同上进入reverse(head ,NULL) 返回reverse(cur.next, pre)  return pre
+
+
+Leecode19:
+
+
+tips:编程过程中出现的错误
+    1.虚拟头节点创建时必须分配内存,让其不是野指针,才可以解引用他的next元素

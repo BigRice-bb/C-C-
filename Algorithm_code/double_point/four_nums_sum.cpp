@@ -10,45 +10,43 @@
 #include <queue>
 #include <iterator>
 using namespace std;
-// 四数之和  延续三数之和的想法
-// 先写一个三数之和--利用三数之和求四数之和
+
 class Solution
 {
 public:
     vector<vector<int>> fourSum(vector<int> &nums, int target)
     {
-        vector<vector<int>> result;
-        //vector<vector<int>> res;
-        long sum;
-        int t;
-        int left;
-        int right;
         if (nums.size() < 4)
         {
-            return result;
+            return {};
         }
-        sort(nums.begin(), nums.end()); // 第一步排序
-        for (size_t i = 0; i < nums.size() - 3; i++)//固定第一个元素
+        long long sum;
+        vector<vector<int>> res;
+        //第一步排序
+        sort(nums.begin(), nums.end());
+        int left, right;
+        //确定第一个数字
+        for (size_t i = 0; i < nums.size() - 3; i++)
         {
-            // if (nums[i]>target)
-            // {
-            //     break;
-            // }
-            if (i>0&&nums[i] == nums[i - 1])//去重
+            //第一个数字去重
+            if (i > 0 && nums[i] == nums[i - 1])
             {
                 continue;
             }
-            for (size_t j = i+1; j < nums.size() - 2; j++)//固定第二个元素
+            //确定第二个数字
+            for (size_t j = i+1; j < nums.size() - 2; j++)
             {
-                if (j>i+1&&nums[j] == nums[j - 1])//去重
+                //第二个数字去重
+                if (j > i + 1 && nums[j] == nums[j - 1])
                 {
                     continue;
                 }
+                //双指针开始头尾遍历
                 left = j + 1;
                 right = nums.size() - 1;
                 while (left < right)
                 {
-                    sum = nums[i]+nums[j] + nums[left] + nums[right];
+                    sum = (long long)(nums[i] + nums[j] + nums[left] + nums[right]);
                     if (sum < target)
                     {
                         left++;
@@ -59,34 +57,42 @@ public:
                     }
                     else
                     {
-                        result.push_back({nums[i], nums[j], nums[left], nums[right]});
-                        while (left < right && nums[left] == nums[left + 1]) // 去重
+                        res.push_back({nums[i], nums[j], nums[left], nums[right]}); 
+                        while (left < right && nums[left] == nums[left + 1])
                         {
                             left++;
                         }
-                        while (left < right && nums[right] == nums[right - 1]) // 去重
+                        while (left < right && nums[right] == nums[right - 1])
                         {
                             right--;
                         }
                         left++;
                         right--;
                     }
-                
-                }              
-            } 
-        }     
-        return result;
+                }
+            }
+        }
+        return res;
+        
     }
 };
 
 void test01()
 {
-    vector<int> nums = {1, 0, -1, 0, -2, 2};
     Solution s;
+    vector<int> nums = {-1, 0,0,0,0,-3, 1, 2, -1, -4};
     vector<vector<int>> res = s.fourSum(nums, 0);
-    for_each(res.begin(), res.end(), [](vector<int> val) { cout << val[0] << " " << val[1] << " " << val[2] <<" "<<val[3]<< endl; });
+    for (auto &v : res)
+    {
+        for (auto &i : v)
+        {
+            cout << i << " ";
+        }
+        cout << endl;
+    }
+    
 }
-int main()
+int main() 
 {
     test01();
     system("pause");

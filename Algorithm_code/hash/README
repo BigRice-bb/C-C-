@@ -4,9 +4,13 @@ set -- unorder_set 无序  不可重复
         set 有序  不可重复
         multiset 有序  可重复
         unordered_multiset 无序  key可重复
-        
+
 map -- key-value对   可在最快时间内查找key是否出现过
         unordered_map 无序map key不可重复 value辅助
         map 有序  key不可重复
         multimap 有序  key可重复
         unordered_multimap 无序  key可重复
+
+两数之和---哈希表-map键值对
+三数之和---双指针--去重是重点
+四数之和---
